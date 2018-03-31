@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 app = Flask(__name__)
 
-from sqlalchemy import create_engine, desc
+from sqlalchemy import create_engine, desc, text
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Category, Items
 
@@ -27,9 +27,10 @@ def itemsJSON(category_id):
 @app.route('/')
 @app.route('/categories/')
 def showCategories():
+    sqlStatement = text('select i.name, i.creation_date, c.name as category_name from Items i, Category c where i.category_id = c.id order by i.creation_date desc limit 10')
+    mostRecent = session.execute(sqlStatement).fetchall()
     categories = session.query(Category).all()
-    #mostRecent = session.query(Items).order_by(creation_date).desc.limit(10).all()
-    mostRecent = session.query(Items).order_by(desc(Items.creation_date))
+    #mostRecent = session.query(Items).order_by(desc(Items.creation_date)).limit(10)
     return render_template('categories.html', categories=categories, mostRecent=mostRecent)
 
 # Show item details

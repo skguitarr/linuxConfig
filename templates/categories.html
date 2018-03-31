@@ -6,13 +6,12 @@
 		<a href = "{{url_for('showItems', category_id = category.id)}}"><p>{{category.name}}</p></a>
 		{% endfor %}
 	</div>
-	<br>
-	<br>
-	<br>
+	{% block content2 %}
 	<div class = 'pane'>
 		<h1>Latest Items</h1>
 		{% for item in mostRecent %}
-		<p>{{item.name}}</p>
+		<p>{{item.name}}<i>({{item.category_name}})</i></p>
 		{% endfor %}
 	</div>
+	{% endblock %}
 {% endblock %}
