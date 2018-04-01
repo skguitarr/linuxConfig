@@ -27,7 +27,8 @@ def itemsJSON(category_id):
 @app.route('/')
 @app.route('/categories/')
 def showCategories():
-    sqlStatement = text('select i.name, i.creation_date, c.name as category_name from Items i, Category c where i.category_id = c.id order by i.creation_date desc limit 10')
+    #sqlStatement = text('select i.name, i.creation_date, c.name as category_name from Items i, Category c where i.category_id = c.id order by i.creation_date desc limit 10')
+    sqlStatement = 'select i.name, i.creation_date, c.name as category_name from Items i, Category c where i.category_id = c.id order by i.creation_date desc limit 10'
     mostRecent = session.execute(sqlStatement).fetchall()
     categories = session.query(Category).all()
     #mostRecent = session.query(Items).order_by(desc(Items.creation_date)).limit(10)
@@ -38,9 +39,10 @@ def showCategories():
 @app.route('/categories/<int:category_id>/item/')
 def showItems(category_id):
     category = session.query(Category).filter_by(id=category_id).one()
-    items = session.query(Items).filter_by(
-        category_id=category_id).all()
-    return render_template('items.html', items=items, category=category)
+    categories = session.query(Category).all()
+    items = session.query(Items).filter_by(category_id=category_id).all()
+    count = session.query(Items).filter_by(category_id=category_id).count()
+    return render_template('items.html', items=items, category=category, categories=categories, count = count)
 
 if __name__ == '__main__':
     app.debug = True
