@@ -50,6 +50,20 @@ def showItemDetails(category_name, item_name):
     item = session.query(Items).filter_by(name=item_name).one()
     return render_template('itemDetails.html', item=item)
 
+# Add Item
+@app.route('/catalog/add/')
+def addItem():
+    categories = session.query(Category).all()
+    return render_template('addEditItem.html', categories=categories, update_type="Add")
+
+# Edit Item
+@app.route('/catalog/<string:item_name>/edit/')
+def editItem(item_name):
+    item = session.query(Items).filter_by(name=item_name).one()
+    categories = session.query(Category).all()
+    return render_template('addEditItem.html', categories=categories, update_type="Edit", item=item)
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0', port=5000)

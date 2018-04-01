@@ -1,13 +1,14 @@
 {% extends "appLayout.html" %}
 {% block content %}
 	<div class = 'pane'>
-		<h1>Categories</h1>
+		<h2>Categories</h2>
 		{% for category in categories %}
 		<a href = "{{url_for('showItems', category_name = category.name)}}"><p>{{category.name}}</p></a>
 		{% endfor %}
 	</div>
 	<div class = 'pane'>
-		<h1>Latest Items</h1>
+		<a href = "{{url_for('addItem', categories = categories, update_type = "Add")}}"><p>Add Item</p></a>
+		<h2>Latest Items</h2>
 		{% for item in mostRecent %}
 		<a href = "{{url_for('showItemDetails', category_name = item.category_name, item_name = item.name)}}"><p>{{item.name}}</a><i>({{item.category_name}})</i></p>
 		{% endfor %}
