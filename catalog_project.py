@@ -48,21 +48,43 @@ def showItems(category_name):
 @app.route('/catalog/<string:category_name>/<string:item_name>/')
 def showItemDetails(category_name, item_name):
     item = session.query(Items).filter_by(name=item_name).one()
-    return render_template('itemDetails.html', item=item)
+    return render_template('itemDetails.html', category_name=category_name, item=item)
 
 # Add Item
-@app.route('/catalog/add/')
+@app.route('/catalog/add', methods=['GET','POST'])
 def addItem():
-    categories = session.query(Category).all()
-    return render_template('addEditItem.html', categories=categories, update_type="Add")
+    if request.method == 'post':
+        addItem = Items(name=request.form['name'], description=request.form['description'], category_id=request.form['categoryName'])
+        session.add(addItem)
+        session.commit()
+        return redirect(url_for('showCategories'))
+    else:
+        categories = session.query(Category).all()
+        return render_template('addItem.html', categories=categories)
 
 # Edit Item
-@app.route('/catalog/<string:item_name>/edit/')
-def editItem(item_name):
+@app.route('/catalog/<string:category_name>/<string:item_name>/edit', methods=['GET','POST'])
+def editItem(category_name, item_name):
     item = session.query(Items).filter_by(name=item_name).one()
-    categories = session.query(Category).all()
-    return render_template('addEditItem.html', categories=categories, update_type="Edit", item=item)
+    if request.method == 'post':
+        if request.form['name']:
+            editedItem.name = request.form['name']
+            item_name = editedItem.name
+        elif request.form['description']:
+            editedItem.description = request.form['description']
+        elif request.form['categoryName']:
+            formCategory = session.query(Category).filter_by(name=request.form[categoryName]).one()
+            category_name = formCategory.name
+            editedItem.category_id = formCategory.id
 
+        session.add(editedItem)
+        session.commit()
+        return redirect(url_for('showItemDetails', category_name=category_name, item_name=item_name))
+    else:
+        categories = session.query(Category).all()
+        return render_template('editItem.html', categories=categories, item=item)
+
+# Delete Item
 
 if __name__ == '__main__':
     app.debug = True

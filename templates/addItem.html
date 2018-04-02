@@ -1,0 +1,27 @@
+{% extends "appLayout.html" %}
+{% block content %}
+	<div class = 'pane'>
+		<h2>Add Item</h2>
+		<form action="{{ url_for('addItem')}}" method='post'>
+			<div>
+				<label for="itemName">Item Name</label>
+				<input name="itemName" type="text">
+			</div>
+			<div>
+				<label for="description">Description</label>
+				<input name="description" type="text">
+			</div>
+			<div>
+				<label for="categoryName">Category</label>
+				<select name="categoryName">
+					{% for category in categories %}
+					<option value="{{category.name}}">{{category.name}}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div>
+				<input type="submit" value="Submit">
+			</div>
+		</form>
+	</div>
+{% endblock %}
