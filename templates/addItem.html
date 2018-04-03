@@ -2,7 +2,7 @@
 {% block content %}
 	<div class = 'pane'>
 		<h2>Add Item</h2>
-		<form action="{{ url_for('addItem')}}" method='post'>
+		<form action="{{ url_for('addItem')}}" method='POST'>
 			<div>
 				<label for="itemName">Item Name</label>
 				<input name="itemName" type="text">

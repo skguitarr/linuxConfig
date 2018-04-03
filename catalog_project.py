@@ -27,7 +27,6 @@ def itemsJSON(category_id):
 @app.route('/')
 @app.route('/catalog/')
 def showCategories():
-    #sqlStatement = text('select i.name, i.creation_date, c.name as category_name from Items i, Category c where i.category_id = c.id order by i.creation_date desc limit 10')
     sqlStatement = 'select i.name, i.creation_date, c.name as category_name from Items i, Category c where i.category_id = c.id order by i.creation_date desc limit 10'
     mostRecent = session.execute(sqlStatement).fetchall()
     categories = session.query(Category).all()
@@ -53,8 +52,10 @@ def showItemDetails(category_name, item_name):
 # Add Item
 @app.route('/catalog/add', methods=['GET','POST'])
 def addItem():
-    if request.method == 'post':
-        addItem = Items(name=request.form['name'], description=request.form['description'], category_id=request.form['categoryName'])
+    if request.method == 'POST':
+        print ('Add item \"POST\" triggered...')
+        formCategory = session.query(Category).filter_by(name=request.form['categoryName']).one()
+        addItem = Items(name=request.form['itemName'], description=request.form['description'], category_id=formCategory.id)
         session.add(addItem)
         session.commit()
         return redirect(url_for('showCategories'))
@@ -65,24 +66,27 @@ def addItem():
 # Edit Item
 @app.route('/catalog/<string:category_name>/<string:item_name>/edit', methods=['GET','POST'])
 def editItem(category_name, item_name):
-    item = session.query(Items).filter_by(name=item_name).one()
-    if request.method == 'post':
-        if request.form['name']:
-            editedItem.name = request.form['name']
+    editedItem = session.query(Items).filter_by(name=item_name).one()
+    if request.method == 'POST':
+        print ('Edit item \"POST\" triggered...')
+        if request.form['itemName']:
+            editedItem.name = request.form['itemName']
             item_name = editedItem.name
-        elif request.form['description']:
+        if request.form['description']:
             editedItem.description = request.form['description']
-        elif request.form['categoryName']:
-            formCategory = session.query(Category).filter_by(name=request.form[categoryName]).one()
-            category_name = formCategory.name
+        if request.form['categoryName']:
+            formCategory = session.query(Category).filter_by(name=request.form['categoryName']).one()
             editedItem.category_id = formCategory.id
 
+        #print("Item name: " + editedItem.name)
+        #print("Description: " + editedItem.description)
+        #print("category ID: ", editedItem.category_id)
         session.add(editedItem)
         session.commit()
-        return redirect(url_for('showItemDetails', category_name=category_name, item_name=item_name))
+        return redirect(url_for('showItemDetails', category_name=formCategory.name, item_name=item_name))
     else:
         categories = session.query(Category).all()
-        return render_template('editItem.html', categories=categories, item=item)
+        return render_template('editItem.html', categories=categories, category_name=category_name, item=editedItem)
 
 # Delete Item
 

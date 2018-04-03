@@ -7,7 +7,7 @@
 		{% endfor %}
 	</div>
 	<div class = 'pane'>
-		<a href = "{{url_for('addItem', categories = categories)}}"><p>Add Item</p></a>
+		<a href = "{{url_for('addItem')}}"><p>Add Item</p></a>
 		<h2>Latest Items</h2>
 		{% for item in mostRecent %}
 		<a href = "{{url_for('showItemDetails', category_name = item.category_name, item_name = item.name)}}"><p>{{item.name}}</a><i>({{item.category_name}})</i></p>
