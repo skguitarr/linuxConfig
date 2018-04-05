@@ -18,7 +18,7 @@
 				</div>
 				<div class="panel-body">
 					{% for item in mostRecent %}
-					<a href = "{{url_for('showItemDetails', category_name = item.category_name, item_name = item.name)}}"><p>{{item.name}}</a><i>({{item.category_name}})</i></p>
+					<a href = "{{url_for('showItemDetails', category_name = item.category_name, item_name = item.name)}}"><p>{{item.name}}</a><i style="padding-left: 5px;">({{item.category_name}})</i></p>
 					{% endfor %}
 				</div>
 				<div class="panel-footer" style="height: 40px;">

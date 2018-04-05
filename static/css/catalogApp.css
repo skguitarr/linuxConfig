@@ -2,3 +2,7 @@
 	background-color: #191970;
 	height: 80px; 
 }
+
+a:hover {
+	decoration: none;
+}
