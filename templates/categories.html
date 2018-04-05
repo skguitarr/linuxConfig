@@ -2,9 +2,9 @@
 {% block content %}
 	<div class="container">
 		<div class="row">
-			<div class="panel panel-default col-sm-6" style="width: 300px; margin: 15px; padding: 0px !important;">
+			<div class="panel panel-default col-sm-6 gtr-catalog-panel">
 				<div class="panel-heading">
-					<h2 style="margin: 0px !important;">Categories</h2>
+					<h2 class="h2-margin">Categories</h2>
 				</div>
 				<div class="panel-body">
 					{% for category in categories %}
@@ -12,16 +12,16 @@
 					{% endfor %}
 				</div>
 			</div>
-			<div class="panel panel-default col-sm-6" style="width: 300px; margin: 15px; padding: 0px !important;">
+			<div class="panel panel-default col-sm-6 gtr-catalog-panel">
 				<div class="panel-heading">
-					<h2 style="margin: 0px !important;">Latest Items</h2>
+					<h2 class="h2-margin">Latest Items</h2>
 				</div>
 				<div class="panel-body">
 					{% for item in mostRecent %}
 					<a href = "{{url_for('showItemDetails', category_name = item.category_name, item_name = item.name)}}"><p>{{item.name}}</a><i style="padding-left: 5px;">({{item.category_name}})</i></p>
 					{% endfor %}
 				</div>
-				<div class="panel-footer" style="height: 40px;">
+				<div class="panel-footer panel-footer-height">
 					<a class="pull-right" href="{{url_for('addItem')}}">Add Item</a>
 				</div>
 			</div>

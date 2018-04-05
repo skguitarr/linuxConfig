@@ -1,8 +1,70 @@
 .header-background {
 	background-color: #191970;
-	height: 80px; 
+	height: 75px;
 }
 
-a:hover {
-	decoration: none;
+.header-text-title {
+	margin-top: -9px; 
+	margin-left: 60px; 
+	text-decoration: none !important;
+       	color: white;
+}
+
+.login-button {
+	margin-top: 24px; 
+	margin-right: 60px;
+}
+
+.home-icon {
+	margin-top: 27px; 
+	padding-right: 15px; 
+	font-size: 24px;
+}
+
+.body-div {
+	margin-right: 80px; 
+	margin-left: 80px;
+}
+
+.gtr-catalog-panel {
+	width: 300px; 
+	margin: 27px; 
+	padding: 0px;
+}
+
+.gtr-catalog-panel-lg {
+	width: 360px; 
+	margin: 27px; 
+	padding: 0px;
+}
+
+.gtr-catalog-panel-stretch {
+	width: 100%; 
+	margin: 27px; 
+	padding: 0px;
+}
+
+.h2-margin {
+	margin: 0px;
+}
+
+.panel-footer-height {
+	height: 40px;
+}
+
+.items-count {
+	margin: 0px; 
+	padding-top: 3px;
+}
+.h2-margin {
+	margin: 0px;
+}
+
+.panel-footer-height {
+	height: 40px;
+}
+
+.items-count {
+	margin: 0px; 
+	padding-top: 3px;
 }

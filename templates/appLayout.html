@@ -3,18 +3,17 @@
 	<head>
 		<title>Guitar Catalog</title>
 		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap-theme.min.css') }}">
 		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/catalogApp.css') }}">
 	</head>
 	<body>
 		<header class="header-background">
-			<a href="/catalog" class="pull-left" style="margin-top: -1px; margin-left: 60px; text-decoration: none; color: white;"><h1>Guitar Catalog</h1></a>
-			<button class="btn btn-primary pull-right" style="margin-top: 24px; margin-right: 60px;">Login</button>
-			<a href="/catalog">
-				<span class="glyphicon glyphicon-home pull-right" style="margin-top: 27px; padding-right: 15px; font-size: 24px;"></span>
+			<h1 class="pull-left"><a href="/catalog/" class="header-text-title">Guitar Catalog</a></h1>
+			<button class="btn btn-primary login-button pull-right">Login</button>
+			<a href="/catalog/">
+				<span class="glyphicon glyphicon-home home-icon pull-right"></span>
 			</a>
 		</header>
-		<div style="margin-right: 80px; margin-left: 80px;">
+		<div class="body-div">
 			{% block content %}{% endblock %}
 		</div>
 	</body>

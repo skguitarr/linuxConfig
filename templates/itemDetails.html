@@ -1,13 +1,13 @@
 {% extends "appLayout.html" %}
 {% block content %}
-	<div class="panel panel-default col-sm-6" style="width: 100%; margin-top: 45px; padding: 0px;">
+	<div class="panel panel-default col-sm-6 gtr-catalog-panel-stretch">
 		<div class="panel-heading">
-			<h2 style="margin: 0px !important;">{{item.name}}</h2>
+			<h2 class="h2-margin">{{item.name}}</h2>
 		</div>
 		<div class="panel-body">			
 			<p>{{item.description}}</p>
 		</div>
-		<div class="panel-footer" style="height: 40px;">
+		<div class="panel-footer panel-footer-height">
 			<div style="display: inline;">
 				<a href="{{url_for('deleteItem', category_name=category_name, item_name=item.name)}}" style="float: right; padding-right:10px;">
 					<p>Delete</p>
