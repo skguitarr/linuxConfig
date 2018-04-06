@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
-app = Flask(__name__)
-
 from sqlalchemy import create_engine, desc, text
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Category, Items
+
+app = Flask(__name__)
 
 engine = create_engine('sqlite:///catalog.db')
 Base.metadata.bind = engine
@@ -58,6 +58,7 @@ def addItem():
         addItem = Items(name=request.form['itemName'], description=request.form['description'], category_id=formCategory.id)
         session.add(addItem)
         session.commit()
+        flash("New item successfully created!")
         return redirect(url_for('showCategories'))
     else:
         categories = session.query(Category).all()
@@ -83,6 +84,7 @@ def editItem(category_name, item_name):
         #print("category ID: ", editedItem.category_id)
         session.add(editedItem)
         session.commit()
+        flash("Successfully updated!")
         return redirect(url_for('showItemDetails', category_name=formCategory.name, item_name=item_name))
     else:
         categories = session.query(Category).all()
@@ -96,10 +98,12 @@ def deleteItem(category_name, item_name):
         itemForDelete = session.query(Items).filter_by(name=item_name).one()
         session.delete(itemForDelete)
         session.commit()
+        flash("Successfully deleted!")
         return redirect(url_for('showCategories'))
     else:
         return render_template('deleteItem.html', category_name=category_name, item_name = item_name)
 
 if __name__ == '__main__':
+    app.secret_key = 'super_secret_key'
     app.debug = True
     app.run(host='0.0.0.0', port=5000)
