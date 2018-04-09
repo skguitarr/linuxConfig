@@ -4,24 +4,13 @@
 		<title>Guitar Catalog</title>
 		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
 		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/catalogApp.css') }}">
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="//apis.google.com/js/platform.js?onload=start"></script>
 	</head>
 	<body>
-		<header class="header-background">
-			<h1 class="pull-left"><a href="/catalog/" class="header-text-title">Guitar Catalog</a></h1>
-			<button class="btn btn-primary login-button pull-right">Login</button>
-			<a href="/catalog/">
-				<span class="glyphicon glyphicon-home home-icon pull-right"></span>
-			</a>
-		</header>
 		<div class="body-div">
-			{% with messages = get_flashed_messages() %}
-			{% if messages %}
-				{% for message in messages %}
-				<div style="padding-top: 15px;">{{ message }}</div>
-				{% endfor %}
-			{% endif %}
-			{% endwith %}
-			{% block content %}{% endblock %}
+			{% block content %}
+			{% endblock %}
 		</div>
 	</body>
 </html>

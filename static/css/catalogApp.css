@@ -28,20 +28,22 @@
 
 .gtr-catalog-panel {
 	width: 300px; 
-	margin: 27px; 
+	margin: 27px;
 	padding: 0px;
 }
 
 .gtr-catalog-panel-lg {
 	width: 360px; 
-	margin: 27px; 
+	margin: 27px;
 	padding: 0px;
 }
 
 .gtr-catalog-panel-stretch {
-	width: 100%; 
-	margin: 27px; 
-	padding: 0px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 80%;
+	transform: translateX(-50%) translateY(-50%);
 }
 
 .h2-margin {

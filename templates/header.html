@@ -1,0 +1,20 @@
+<header class="header-background">
+	<h1 class="pull-left"><a href="/catalog/" class="header-text-title">Guitar Catalog</a></h1>
+	{% if login_session['logged_in'] == True %}
+		<a href="{{url_for('gdisconnect')}}" class="btn btn-primary login-button pull-right" role="button">Logout</a>
+	{% else %}
+		<a href="{{url_for('showLogin')}}" class="btn btn-primary login-button pull-right" role="button">Login</a>
+	{% endif %}
+	<a href="/catalog/">
+		<span class="glyphicon glyphicon-home home-icon pull-right"></span>
+	</a>
+</header>
+<div>
+	{% with messages = get_flashed_messages() %}
+	{% if messages %}
+		{% for message in messages %}
+		<div style="padding-top: 15px;">{{ message }}</div>
+		{% endfor %}
+	{% endif %}
+	{% endwith %}
+</div>
