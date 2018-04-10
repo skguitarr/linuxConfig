@@ -1,6 +1,7 @@
 .header-background {
 	background-color: #191970;
 	height: 75px;
+	width: 100%;
 }
 
 .header-text-title {
@@ -26,24 +27,16 @@
 	margin-left: 80px;
 }
 
+.sub-container {
+	margin-top: 21px;
+	margin-left: 21px;
+	margin-right: 21px;
+	margin-bottom: 21px;
+}
+
 .gtr-catalog-panel {
-	width: 300px; 
-	margin: 27px;
+	width: 100%; 
 	padding: 0px;
-}
-
-.gtr-catalog-panel-lg {
-	width: 360px; 
-	margin: 27px;
-	padding: 0px;
-}
-
-.gtr-catalog-panel-stretch {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 80%;
-	transform: translateX(-50%) translateY(-50%);
 }
 
 .h2-margin {

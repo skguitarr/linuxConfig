@@ -1,29 +1,33 @@
 {% extends "appLayout.html" %}
 {% block content %}
-	{% include "header.html" %}
-	<div class="container">
+{% include "header.html" %}
+	<div class="sub-container">
 		<div class="row">
-			<div class="panel panel-default col-sm-6 gtr-catalog-panel">
-				<div class="panel-heading">
-					<h2 class="h2-margin">Categories</h2>
-				</div>
-				<div class="panel-body">
-					{% for category in categories %}
-					<a href = "{{url_for('showItems', category_name = category.name)}}"><p>{{category.name}}</p></a>
-					{% endfor %}
+			<div class="col-sm-5">
+				<div class="panel panel-default gtr-catalog-panel">
+					<div class="panel-heading">
+						<h2 class="h2-margin">Categories</h2>
+					</div>
+					<div class="panel-body">
+						{% for category in categories %}
+						<a href = "{{url_for('showItems', category_name = category.name)}}"><p>{{category.name}}</p></a>
+						{% endfor %}
+					</div>
 				</div>
 			</div>
-			<div class="panel panel-default col-sm-6 gtr-catalog-panel">
-				<div class="panel-heading">
-					<h2 class="h2-margin">Latest Items</h2>
-				</div>
-				<div class="panel-body">
-					{% for item in mostRecent %}
-					<a href = "{{url_for('showItemDetails', category_name = item.category_name, item_name = item.name)}}"><p>{{item.name}}</a><i style="padding-left: 5px;">({{item.category_name}})</i></p>
-					{% endfor %}
-				</div>
-				<div class="panel-footer panel-footer-height">
-					<a class="pull-right" href="{{url_for('addItem')}}">Add Item</a>
+			<div class="col-sm-7">
+				<div class="panel panel-default gtr-catalog-panel">
+					<div class="panel-heading">
+						<h2 class="h2-margin">Latest Items</h2>
+					</div>
+					<div class="panel-body">
+						{% for item in mostRecent %}
+						<a href = "{{url_for('showItemDetails', category_name = item.category_name, item_name = item.name)}}"><p>{{item.name}}</a><i style="padding-left: 5px;">({{item.category_name}})</i></p>
+						{% endfor %}
+					</div>
+					<div class="panel-footer panel-footer-height">
+						<a class="pull-left" href="{{url_for('addItem')}}">Add Item</a>
+					</div>
 				</div>
 			</div>
 		</div>
