@@ -173,17 +173,25 @@ def gdisconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
 
-#API Endpoint 1
+#API Endpoint 1 - return all categories
 @app.route('/catalog/JSON')
 def categoryJSON():
     categories = session.query(Category).all()
     return jsonify(Category=[i.serialize for i in categories])
 
-#API Endpoint 2
+#API Endpoint 2 - return all items for each category
+@app.route('/catalog/<int:category_id>/JSON')
 @app.route('/catalog/<int:category_id>/items/JSON')
 def itemsJSON(category_id):
     items = session.query(Items).filter_by(category_id = category_id).all()
     return jsonify(Catalog=[i.serialize for i in items])
+
+#API Endpoint 3 - return details of a single item
+@app.route('/catalog/<int:category_id>/<int:item_id>/JSON')
+@app.route('/catalog/<int:category_id>/items/<int:item_id>/JSON')
+def itemDetailsJSON(category_id, item_id):
+    item = session.query(Items).filter_by(category_id = category_id, id=item_id).all()
+    return jsonify(Item=[i.serialize for i in item])
 
 # Show all categories
 @app.route('/')
