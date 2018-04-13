@@ -1,7 +1,10 @@
 <header class="header-background">
 	<h1 class="pull-left"><a href="/catalog/" class="header-text-title">Guitar Catalog</a></h1>
 	{% if login_session['logged_in'] == True %}
-		<a href="{{url_for('gdisconnect')}}" class="btn btn-primary login-button pull-right" role="button">Logout</a>
+		<div class="pull-right">
+			<a href="{{url_for('gdisconnect')}}" class="btn btn-primary login-button pull-right" role="button">Logout</a>
+			<div class="pull-right" style="margin-top: 33px; margin-right: 15px; color: white;">Welcome {{login_session['username']}}!</div>
+		</div>
 	{% else %}
 		<a href="{{url_for('showLogin')}}" class="btn btn-primary login-button pull-right" role="button">Login</a>
 	{% endif %}
