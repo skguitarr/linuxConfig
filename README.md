@@ -10,7 +10,7 @@ http://18.222.119.170
 Launch the web app by navigating to the following url:
 http://18.222.119.170/catalog
 
-NOTE TO INSTRUCTOR:  The only thing I didn't get working was the Google OAuth.  I believe that I'm getting the oauth error because google doesn't like IP addresses in client_secrets.json file, they only allow hostnames not IP addys.  Since the Rubric did not mention Oauth, I'd prefer to avoid the montly fee to set up a DNS definition. Or if there's an easy way to work around this can you help?  Thanks in advance.
+NOTE TO INSTRUCTOR:  The only thing I didn't get working was the Google OAuth.  I believe that I'm getting the oauth error because google doesn't like IP addresses in client_secrets.json file, they only allow hostnames not IP addys.  Since the Rubric did not mention Oauth, I'd prefer to avoid the montly fee to set up a DNS hostname definition. Or if there's an easy way to work around this can you help?  Thanks in advance.
 
 ## Summary of Software Installed
 certifi==2018.8.24
@@ -44,7 +44,7 @@ yarg==0.1.9
 3)  Set up the firewall to only allow the 3 ports:  2200, 80, 123.
 4)  Created user grader and gave sudo access.
 5)  Created public and private keys with sshkeygen, installed the public keys on the server in the .ssh directories.
-6)  Setup wsgi for Python 2.
+6)  Set up wsgi for Python 2.
 7)  Set up the catalog database by installing postgresql, creating "catalog" user after sudo su to postgres user, created catalog DB, ran DB setup files.
 8)  Set up wsgi and __init__.py files in /var/www/FlaskApp dirs. Changed original python file to __init__.py.
 9)  Updated the python DB setup files and __init__.py file to point to the postgresql catalog DB.
