@@ -1,34 +1,58 @@
 # Project Title
 
-Guitar Catalog Project
+Guitar Catalog Project - Linux Configuration
 
 ## Getting Started
 
-The catalog.db file is checked in and can be used as is.  If you want to create a new database from scratch following these steps:
-1)  python database_setup.py - Run this to create the database for the application.
-2)  python populate_catalog_database.py - Run this file to populate the database.
-
-Next, run the main project python file like so:
-python catalog_project.py
+IP ADDRESS:
+http://18.222.119.170
 
 Launch the web app by navigating to the following url:
-http://localhost:5000/catalog
+http://18.222.119.170/catalog
 
-### Prerequisites
+NOTE TO INSTRUCTOR:  The only thing I didn't get working was the Google OAuth.  I believe that I'm getting the oauth error because google doesn't like IP addresses in client_secrets.json file, they only allow hostnames not IP addys.  Since the Rubric did not mention Oauth, I'd prefer to avoid the montly fee to set up a DNS definition. Or if there's an easy way to work around this can you help?  Thanks in advance.
 
-Database should be set up, or use existing/checked-in DB (See "Getting Started" section).
+## Summary of Software Installed
+certifi==2018.8.24
+chardet==3.0.4
+click==6.7
+docopt==0.6.2
+Flask==1.0.2
+Flask-SQLAlchemy==2.3.2
+httplib2==0.11.3
+idna==2.7
+itsdangerous==0.24
+Jinja2==2.10
+MarkupSafe==1.0
+oauth2client==4.1.2
+pipreqs==0.4.9
+psycopg2-binary==2.7.5
+pyasn1==0.4.4
+pyasn1-modules==0.2.2
+requests==2.19.1
+rsa==3.4.2
+six==1.11.0
+SQLAlchemy==1.2.11
+urllib3==1.23
+virtualenv==16.0.0
+Werkzeug==0.14.1
+yarg==0.1.9
 
-## Additional Info
+## Summary of configurations made
+1)  Ran "sudo apt-get update" to update installed software.
+2)  Changed the ssh port from 22 to 2200.
+3)  Set up the firewall to only allow the 3 ports:  2200, 80, 123.
+4)  Created user grader and gave sudo access.
+5)  Created public and private keys with sshkeygen, installed the public keys on the server in the .ssh directories.
+6)  Setup wsgi for Python 2.
+7)  Set up the catalog database by installing postgresql, creating "catalog" user after sudo su to postgres user, created catalog DB, ran DB setup files.
+8)  Set up wsgi and __init__.py files in /var/www/FlaskApp dirs. Changed original python file to __init__.py.
+9)  Updated the python DB setup files and __init__.py file to point to the postgresql catalog DB.
 
-The following JSON Endpoints are available:
-http://localhost:5000/catalog/1/items/JSON (where '1' is the category number)
-http://localhost:5000/catalog/JSON (this shows the categories which make up the catalog)
-
-At any point, click on the home icon or the "Guitar Catalog" header to go back to the main page.
-
-User must login prior to doing Add, Edit, and Delete functionality.  If a user attempts to access these, the app will redirect to the login.
-
+## Third-party resources
+Amazon Web Services (AWS)
+Linux open source
+Ubuntu open source
 
 ## Authors
-
 Sean Kelley, Udacity
