@@ -7,6 +7,9 @@ Guitar Catalog Project - Linux Configuration
 IP ADDRESS:
 http://18.222.119.170
 
+SSH PORT:
+2200
+
 Launch the web app by navigating to the following url:
 http://18.222.119.170/catalog
 
