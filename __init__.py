@@ -18,10 +18,10 @@ from flask import make_response
 app = Flask(__name__)
 
 CLIENT_ID = json.loads(
-    open('client_secrets.json', 'r').read())['web']['client_id']
+    open('/var/www/FlaskApp/FlaskApp/client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Guitar Catalog"
 
-engine = create_engine('sqlite:///catalog.db')
+engine = create_engine('postgresql://catalog:p3o3s3t!@localhost/catalog')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
@@ -363,4 +363,4 @@ def deleteItem(category_name, item_name):
 if __name__ == '__main__':
     app.secret_key = 'super_secret_key'
     app.debug = True
-    app.run(host='0.0.0.0', port=5000)
+    app.run()
